@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 });
 
 //GET user
-router.get("/",(req,res)=>{
+router.get("/", async (req,res)=>{
   const Alldata = await User.find();
   res.status(200).json({
     "status":"success",
@@ -18,7 +18,7 @@ router.get("/",(req,res)=>{
 
 
 // POST user
-router.post("/", function(req,res){
+router.post("/", async function(req,res){
   try{
     const data = req.body;
     let nickName = data.nickName;
@@ -45,7 +45,7 @@ router.post("/", function(req,res){
 })
 
 // PATCH user
-router.patch("/:id",(req,res)=>{
+router.patch("/:id",async (req,res)=>{
   try{
     const id = req.params.id;
     const data = req.body;
@@ -76,7 +76,7 @@ router.patch("/:id",(req,res)=>{
 })
 
 //delete User
-router.delete("/",(req,res)=>{
+router.delete("/",async (req,res)=>{
   await User.deleteMany({})
   const AllUsers = await User.find()
   res.status(200).json({
